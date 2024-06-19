@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Layout from './components/AppLayout';
+import Dashboard from './pages/Dashboard';
+import MuscleGroupsList from './components/MuscleGroupList';
+import ExercisesList from './components/ExercisesList';
+import ExerciseDetails from './components/ExerciseDetails';
+import WorkoutForm from './components/WorkoutForm';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/muscle-groups" element={<MuscleGroupsList />} />
+          <Route path="/exercises" element={<ExercisesList />} />
+          <Route path="/exercise/:exerciseId" element={<ExerciseDetails />} />
+          <Route path="/workout-form" element={<WorkoutForm />} />
+        </Routes>
+      </Layout>
+    </Router>
   );
 }
 
 export default App;
+
